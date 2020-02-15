@@ -1,0 +1,9 @@
+
+- src: https://github.com/cadjai/install-and-configure-standalone-docker-registry 
+  scm: git
+  name: install-and-configure-mirror-registry
+
+- src: https://github.com/cadjai/sync-content-for-disconnected-ocp4-install 
+  scm: git
+  name: sync-content-for-disconnected-ocp-install
+

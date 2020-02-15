@@ -1,0 +1,46 @@
+---
+- name: Install and Configure Mirror Registry
+  hosts: localhost
+  become: yes
+  vars:
+    - registry_host_port: 5000
+    - registry_certs_dir: '/opt/registry/certs'
+    - registry_data_dir: '/opt/registry/data'
+    - registry_auth_dir: '/opt/registry/auth'
+    - registry_container_name: "mirror-registry"
+    - use_containeried_registry: true
+    - secure_registry: true
+    - registry_container_port: '5000'
+    - enable_authz_on_registry: true
+    - enable_auth_on_registry: true
+    - registry_certcsrfile: 'registry.csr'
+    - registry_certfile: 'registry.crt'
+    - registry_certkeyfile: "registry.key"
+    - registry_authzfile: 'registry_passwd'
+    - registry_authzrealm: "Registry Realm"
+    - registry_container_image: "docker.io/library/registry:2"
+    - generate_selfsigned_registry_certfiles: true 
+
+  roles:
+  - install-and-configure-mirror-registry
+
+
+- name: Mirror content and copy to media to use for disconnected install 
+  hosts: localhost
+  become: yes
+  vars:
+    - ocp_release: '4.3.1'
+    - mirror_registry_fqdn_port:
+    - mirror_registry_ca:
+    - mirror_registry_username:
+    - mirror_registry_password:
+    - local_repository:
+    - local_secret_json:
+    - mirror_registry_pullsecret:
+    - ocp_registries_pullsecret:
+    - content_source_output:
+    - product_repo:
+    - local_images_store_dir:
+
+  roles:
+  - sync-content-for-disconnected-ocp-install
