@@ -5,5 +5,5 @@ To use this repository run the following command to clone required roles.
 ```
 ansible-galaxy install -r requirements.yml --roles-path=roles
 ```
-Then provide update intentory file to match your envirornment. 
+Then update inventory file to match your envirornment. 
 Finally run the playbook.
