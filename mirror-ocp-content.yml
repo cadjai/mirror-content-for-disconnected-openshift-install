@@ -1,8 +1,11 @@
 ---
 - name: Install and Configure Mirror Registry
-  hosts: localhost
+  hosts: mirror-registry 
   become: yes
   vars:
+    - registry_admin_username: ''
+    - registry_admin_password: ''
+    - registry_host_fqdn: ''
     - registry_host_port: 5000
     - registry_certs_dir: '/opt/registry/certs'
     - registry_data_dir: '/opt/registry/data'
@@ -20,6 +23,11 @@
     - registry_authzrealm: "Registry Realm"
     - registry_container_image: "docker.io/library/registry:2"
     - generate_selfsigned_registry_certfiles: true 
+    - cert_country: "US"
+    - cert_state: "CO"
+    - cert_locality: "Aurora"
+    - cert_org: "Red Hat"
+    - cert_org_unit: "OCP"
 
   roles:
   - install-and-configure-mirror-registry
@@ -29,18 +37,25 @@
   hosts: localhost
   become: yes
   vars:
-    - ocp_release: '4.3.1'
+    - registry_certfile: 'registry.crt'
+    - ocp_client_release: '4.3.2'
+    - ocp_release: '4.3.0'
+    - registry_host_fqdn: ''
     - mirror_registry_fqdn_port:
+    - ocp_release: '4.3.2-x86_64'
+    - release_name: ocp-release
+    - mirror_registry_fqdn: ""
+    - mirror_registry_port: "5000"
     - mirror_registry_ca:
-    - mirror_registry_username:
+    - mirror_registry_username: 
     - mirror_registry_password:
-    - local_repository:
+    - local_repository: 'ocp4/openshift4'
     - local_secret_json:
     - mirror_registry_pullsecret:
     - ocp_registries_pullsecret:
     - content_source_output:
-    - product_repo:
-    - local_images_store_dir:
+    - product_repo: 'openshift-release-dev'
+    - local_mirrored_contents_store_dir:
 
   roles:
   - sync-content-for-disconnected-ocp-install

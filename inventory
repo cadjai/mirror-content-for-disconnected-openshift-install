@@ -10,6 +10,9 @@ localhost ansible_connection=local
 [registry]
 localhost ansible_connection=local
 
+[mirror-registry]
+localhost ansible_connection=local
+
 [dns]
 localhost ansible_connection=local
 
